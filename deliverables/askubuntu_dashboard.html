@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ask Ubuntu Big Data Analytics</title>
+  <style>
+    :root{--ink:#18212f;--muted:#667085;--line:#e5e7eb;--paper:#fff;--bg:#f4f7fb;--blue:#2563eb;--cyan:#0891b2;--green:#059669;--amber:#d97706;--red:#dc2626;--shadow:0 14px 40px rgba(15,23,42,.08)}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    .wrap{max-width:1180px;margin:auto;padding:28px 20px 56px}.hero{background:linear-gradient(135deg,#101c35,#1d4ed8);border-radius:24px;color:#fff;padding:34px 36px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:280px;height:280px;border:42px solid rgba(255,255,255,.08);border-radius:50%;right:-70px;top:-110px}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:12px;opacity:.75;font-weight:700}.hero h1{font-size:clamp(30px,5vw,52px);line-height:1.05;margin:9px 0 12px;letter-spacing:-.04em}.hero p{max-width:760px;margin:0;color:#dbeafe;font-size:16px}.source{margin-top:20px;font-size:12px;color:#bfdbfe}.source code{color:#fff}
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}.kpi,.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.kpi{padding:18px}.kpi .label{color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}.kpi .value{font-size:28px;font-weight:800;margin-top:4px}.kpi .detail{font-size:12px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1.35fr .95fr;gap:18px}.card{padding:22px;margin-bottom:18px}.card h2{font-size:20px;margin:0 0 5px;letter-spacing:-.02em}.card h3{font-size:16px;margin:0 0 4px}.sub{color:var(--muted);font-size:13px;margin:0 0 15px}.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}.controls label{font-size:13px;font-weight:700;color:var(--muted)}select{border:1px solid #cbd5e1;border-radius:9px;padding:8px 10px;background:#fff;color:var(--ink);font:inherit}
+    svg{width:100%;height:auto;display:block}.chart{border-top:1px solid var(--line);padding-top:10px}.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:8px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.note{font-size:12px;color:var(--muted);background:#f8fafc;border-left:3px solid #93c5fd;padding:9px 11px;margin-top:12px}.status-list{display:grid;gap:10px}.status{display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding:10px 0}.status:last-child{border-bottom:0}.badge{font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px;background:#dcfce7;color:#166534;white-space:nowrap}.badge.warn{background:#fef3c7;color:#92400e}
+    table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}.rank{font-weight:800;color:var(--blue)}.tag{display:inline-block;background:#eff6ff;color:#1d4ed8;border-radius:999px;padding:2px 8px;font-size:12px}.qa{border-top:1px solid var(--line)}details{padding:14px 0}summary{cursor:pointer;font-weight:750;list-style-position:outside;padding-left:4px}details p{color:#475569;font-size:14px;margin:10px 0}.mini-chart{margin-top:7px;background:#fbfdff;border:1px solid #eef2f7;border-radius:10px;padding:8px}.pill-row{display:flex;gap:8px;flex-wrap:wrap}.pill{padding:7px 10px;border-radius:10px;background:#f1f5f9;font-size:13px}.footer{color:var(--muted);font-size:12px;margin-top:8px;text-align:center}.smallcaps{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}
+    @media(max-width:850px){.grid{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.hero{padding:27px 24px}.card{padding:17px}table{font-size:12px}.hide-mobile{display:none}}
+    @media(max-width:480px){.wrap{padding:14px 12px 40px}.kpis{grid-template-columns:1fr 1fr;gap:9px}.kpi{padding:13px}.kpi .value{font-size:22px}.hero h1{font-size:34px}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <div class="eyebrow">BCS714D · Big Data Analytics · Track B</div>
+    <h1>Ask Ubuntu Big Data Analytics</h1>
+    <p>A compact view of the assigned Ask Ubuntu Stack Exchange dump processed with MongoDB, HDFS/YARN MapReduce, Pig, and Hive.</p>
+    <div class="source">Source of truth: <code>data/archives/askubuntu.com.7z</code> · April 2024 Stack Exchange dump snapshot</div>
+  </header>
+
+  <section class="kpis" aria-label="Project summary">
+    <article class="kpi"><div class="label">Total posts</div><div class="value">945,111</div><div class="detail">MongoDB documents loaded</div></article>
+    <article class="kpi"><div class="label">Questions</div><div class="value">414,451</div><div class="detail">post type 1 records</div></article>
+    <article class="kpi"><div class="label">Answers</div><div class="value">523,728</div><div class="detail">post type 2 records</div></article>
+    <article class="kpi"><div class="label">Frame range</div><div class="value">2009–2024</div><div class="detail">first to last creation year</div></article>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <h2>Question activity trend</h2>
+      <p class="sub">Yearly records from the MongoDB aggregation and the MapReduce output.</p>
+      <div class="controls"><label for="trendMetric">Measure</label><select id="trendMetric"><option value="questions">Questions</option><option value="answers">Answers reported</option><option value="score">Mean question score</option></select></div>
+      <div class="chart"><svg id="trendChart" viewBox="0 0 760 330" role="img" aria-label="Yearly question activity chart"></svg></div>
+      <div class="legend"><span><i class="dot" style="background:#2563eb"></i>Selected measure</span><span>Years: 2015–2024 (MongoDB question aggregation)</span></div>
+      <div class="note">The MapReduce output agrees with the MongoDB yearly question counts and answer totals for all ten years.</div>
+    </article>
+
+    <article class="card">
+      <h2>Most-used tags</h2>
+      <p class="sub">Top tags calculated from the assigned dataset.</p>
+      <div class="controls"><label for="tagMetric">Show</label><select id="tagMetric"><option value="posts">Tagged posts</option><option value="score">Mean question score</option></select></div>
+      <table><thead><tr><th>#</th><th>Tag</th><th class="num" id="tagHead">Posts</th></tr></thead><tbody id="tagTable"></tbody></table>
+      <div class="note">Tagged-post counts come from <code>results/dataset/top_tags.csv</code>. Mean scores come from the MongoDB question-only aggregation; the two counts are intentionally not mixed.</div>
+    </article>
+  </section>
+
+  <section class="card">
+    <h2>Hive questions and answers</h2>
+    <p class="sub">Open a question to see the result derived from the project outputs.</p>
+    <div class="qa">
+      <details open><summary>How did question activity change over the MongoDB aggregation years?</summary><p>Question volume peaked at <strong>40,931 in 2016</strong>, then declined to <strong>3,601 in 2024</strong>. The 2024 value is a partial year in the April 2024 snapshot.</p><div class="mini-chart"><svg id="qaTrend" viewBox="0 0 760 220" aria-label="Question trend answer chart"></svg></div></details>
+      <details><summary>Which year had the most questions?</summary><p><strong>2016</strong> had the largest yearly question count: <strong>40,931</strong>. Its mean question score was <strong>2.6883</strong> and the aggregation reported <strong>49,321</strong> answers.</p></details>
+      <details><summary>Which tags appear most often?</summary><p>The all-post tag count ranks <strong>boot (24,058)</strong>, <strong>networking (22,985)</strong>, and <strong>command-line (22,509)</strong> highest. In the MongoDB question-only aggregation, boot also leads with <strong>18,362</strong> questions.</p><div class="mini-chart"><svg id="tagChart" viewBox="0 0 760 230" aria-label="Top tag comparison chart"></svg></div></details>
+      <details><summary>How many questions were answered?</summary><p>The MongoDB answer-status aggregation reports <strong>184,865 answered</strong> questions and <strong>83,677 unanswered</strong> questions in the aggregation scope.</p><div class="pill-row"><span class="pill">Answered · 184,865</span><span class="pill">Unanswered · 83,677</span></div></details>
+      <details><summary>What did Hive show for TextFile versus RCFile?</summary><p>Both tables returned 10 yearly rows with matching year labels. Logical storage was <strong>8,494,848 bytes</strong> for TextFile and <strong>7,239,381 bytes</strong> for RCFile. The recorded single-run query wall time was <strong>35.28 s</strong> versus <strong>38.11 s</strong>. Timing includes starting Beeline and returning query output; it is a single-node benchmark.</p></details>
+    </div>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <h2>Hive storage and query comparison</h2>
+      <p class="sub">Values from <code>results/hive/query_comparison.txt</code>.</p>
+      <table><thead><tr><th>Measure</th><th class="num">TextFile</th><th class="num">RCFile</th></tr></thead><tbody>
+        <tr><td>Rows returned</td><td class="num">10</td><td class="num">10</td></tr><tr><td>Logical storage</td><td class="num">8.49 MB</td><td class="num">7.24 MB</td></tr><tr><td>Single-run query time</td><td class="num">35.28 s</td><td class="num">38.11 s</td></tr><tr><td>Year labels matched</td><td class="num">Yes</td><td class="num">Yes</td></tr>
+      </tbody></table>
+      <div class="note">RCFile used about 14.8% less logical storage in this run. Query timing is not a multi-node performance claim.</div>
+    </article>
+    <article class="card">
+      <h2>Execution verification</h2>
+      <p class="sub">Captured from the final verification evidence.</p>
+      <div class="status-list">
+        <div class="status"><span><strong>MongoDB</strong><br><small>945,111 documents · 3 project indexes</small></span><span class="badge">READY</span></div>
+        <div class="status"><span><strong>HDFS</strong><br><small>2 live DataNodes · master + worker1</small></span><span class="badge">LIVE</span></div>
+        <div class="status"><span><strong>YARN</strong><br><small>2 nodes in RUNNING state</small></span><span class="badge">RUNNING</span></div>
+        <div class="status"><span><strong>MapReduce</strong><br><small>Yearly output written to HDFS</small></span><span class="badge">SUCCESS</span></div>
+        <div class="status"><span><strong>Pig</strong><br><small>Transformation exit status 0</small></span><span class="badge">SUCCESS</span></div>
+        <div class="status"><span><strong>Physical-host scope</strong><br><small>Current evidence uses 1 master + 1 worker</small></span><span class="badge warn">DISCLOSED</span></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="card">
+    <h2>Final analysis</h2>
+    <p class="sub">What the supplied results support.</p>
+    <p>Ask Ubuntu contains <strong>945,111</strong> posts, including <strong>414,451 questions</strong> and <strong>523,728 answers</strong>. Question activity is highest around 2015–2016 and trends downward afterward, with 2024 incomplete in the snapshot. Boot, networking, and command-line are the most frequent tags by all-post count.</p>
+    <p>The project demonstrates document ingestion and indexing in MongoDB, HDFS file operations, a YARN MapReduce aggregation, Pig transformation, and equivalent Hive TextFile/RCFile queries. HDFS/YARN evidence records two live nodes: master <code>172.16.6.150</code> and worker1 <code>172.16.4.91</code>.</p>
+    <p class="note">Data note: the April 2024 archive is a selected Ask Ubuntu community snapshot, not the full Stack Exchange multi-community corpus. Frame/aggregation years reflect record creation years and may not represent a complete calendar year.</p>
+  </section>
+  <div class="footer">Prepared from the project files in <code>stackexchange_track_b</code> · No external libraries or network requests</div>
+</main>
+<script>
+  const years=[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
+  const yearly=[
+    {year:2015,questions:37892,answers:50028,score:2.617254},{year:2016,questions:40931,answers:49321,score:2.688305},{year:2017,questions:34010,answers:35499,score:2.272832},{year:2018,questions:32304,answers:33595,score:2.414345},{year:2019,questions:27072,answers:25396,score:1.765477},{year:2020,questions:31542,answers:29129,score:1.600786},{year:2021,questions:24082,answers:19934,score:1.082551},{year:2022,questions:19921,answers:15701,score:1.185884},{year:2023,questions:17187,answers:9047,score:.489207},{year:2024,questions:3601,answers:1552,score:.198278}
+  ];
+  const tags=[
+    {tag:'boot',posts:24058,score:1.251825},{tag:'networking',posts:22985,score:1.370935},{tag:'command-line',posts:22509,score:3.167622},{tag:'14.04',posts:20403,score:1.658184},{tag:'drivers',posts:18196,score:1.403241},{tag:'dual-boot',posts:17658,score:.868246},{tag:'apt',posts:17505,score:2.633001},{tag:'16.04',posts:17210,score:2.457125},{tag:'12.04',posts:16604,score:1.0},{tag:'server',posts:16499,score:1.286759}
+  ];
+  const NS='http://www.w3.org/2000/svg';
+  function el(name,attrs={}){const n=document.createElementNS(NS,name);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));return n}
+  function text(svg,x,y,value,attrs={}){const n=el('text',{x,y,...attrs});n.textContent=value;svg.appendChild(n);return n}
+  function lineChart(id,data,key,color='#2563eb',labels=years){const svg=document.getElementById(id);svg.innerHTML='';const W=760,H=id==='trendChart'?330:220,p={l:58,r:18,t:18,b:40},w=W-p.l-p.r,h=H-p.t-p.b;const vals=data.map(d=>d[key]),max=Math.max(...vals),min=Math.min(0,Math.min(...vals));const x=i=>p.l+(i/(data.length-1))*w,y=v=>p.t+h-((v-min)/(max-min||1))*h;for(let i=0;i<5;i++){const v=min+(max-min)*i/4;svg.appendChild(el('line',{x1:p.l,y1:y(v),x2:W-p.r,y2:y(v),stroke:'#e5e7eb'}));text(svg,p.l-8,y(v)+4, key==='score'?v.toFixed(1):Math.round(v).toLocaleString(),{'text-anchor':'end',fill:'#64748b','font-size':11})}const pts=data.map((d,i)=>`${x(i)},${y(d[key])}`).join(' ');svg.appendChild(el('polyline',{points:pts,fill:'none',stroke:color,'stroke-width':3,'stroke-linecap':'round','stroke-linejoin':'round'}));data.forEach((d,i)=>{svg.appendChild(el('circle',{cx:x(i),cy:y(d[key]),r:4,fill:'#fff',stroke:color,'stroke-width':2}));if(id==='trendChart'||data.length<8)text(svg,x(i),H-14,String(labels[i]),{'text-anchor':'middle',fill:'#64748b','font-size':11})});text(svg,12,16,key==='score'?'mean score':'records',{fill:'#64748b','font-size':11});text(svg,W/2,H-2,'creation year',{'text-anchor':'middle',fill:'#64748b','font-size':11})}
+  function barChart(){const svg=document.getElementById('tagChart');svg.innerHTML='';const data=tags.slice(0,7),W=760,H=230,p={l:126,r:30,t:12,b:15},w=W-p.l-p.r,row=26,max=Math.max(...data.map(d=>d.posts));data.forEach((d,i)=>{const yy=p.t+i*row; text(svg,p.l-10,yy+16,d.tag,{'text-anchor':'end',fill:'#475569','font-size':12});svg.appendChild(el('rect',{x:p.l,y:yy,width:w*(d.posts/max),height:16,rx:5,fill:i===0?'#2563eb':'#93c5fd'}));text(svg,p.l+w*(d.posts/max)+8,yy+13,d.posts.toLocaleString(),{fill:'#334155','font-size':11})})}
+  function renderTags(){const metric=document.getElementById('tagMetric').value,body=document.getElementById('tagTable');body.innerHTML='';document.getElementById('tagHead').textContent=metric==='posts'?'Tagged posts':'Mean score';tags.slice(0,8).forEach((d,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="rank">${i+1}</td><td><span class="tag">${d.tag}</span></td><td class="num">${metric==='posts'?d.posts.toLocaleString():d.score.toFixed(3)}</td>`;body.appendChild(tr)})}
+  function renderTrend(){lineChart('trendChart',yearly,document.getElementById('trendMetric').value)}
+  document.getElementById('trendMetric').addEventListener('change',renderTrend);document.getElementById('tagMetric').addEventListener('change',renderTags);renderTrend();renderTags();lineChart('qaTrend',yearly,'questions');barChart();
+</script>
+</body>
+</html>
