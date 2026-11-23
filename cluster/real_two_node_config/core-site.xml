@@ -1,0 +1,10 @@
+<configuration>
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://master:8020</value>
+  </property>
+  <property>
+    <name>hadoop.tmp.dir</name>
+    <value>/home/cse/.local/opt/bda-hadoop-real</value>
+  </property>
+</configuration>

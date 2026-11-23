@@ -1,0 +1,2 @@
+# The ingestion and Hadoop Streaming Python scripts use only the standard library.
+# Install Java, Hadoop, MongoDB Database Tools, Pig, Hive, and 7-Zip as documented.
