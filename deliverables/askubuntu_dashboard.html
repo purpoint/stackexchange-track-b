@@ -59,7 +59,7 @@
       <details><summary>Which year had the most questions?</summary><p><strong>2016</strong> had the largest yearly question count: <strong>40,931</strong>. Its mean question score was <strong>2.6883</strong> and the aggregation reported <strong>49,321</strong> answers.</p></details>
       <details><summary>Which tags appear most often?</summary><p>The all-post tag count ranks <strong>boot (24,058)</strong>, <strong>networking (22,985)</strong>, and <strong>command-line (22,509)</strong> highest. In the MongoDB question-only aggregation, boot also leads with <strong>18,362</strong> questions.</p><div class="mini-chart"><svg id="tagChart" viewBox="0 0 760 230" aria-label="Top tag comparison chart"></svg></div></details>
       <details><summary>How many questions were answered?</summary><p>The MongoDB answer-status aggregation reports <strong>184,865 answered</strong> questions and <strong>83,677 unanswered</strong> questions in the aggregation scope.</p><div class="pill-row"><span class="pill">Answered · 184,865</span><span class="pill">Unanswered · 83,677</span></div></details>
-      <details><summary>What did Hive show for TextFile versus RCFile?</summary><p>Both tables returned 10 yearly rows with matching year labels. Logical storage was <strong>8,494,848 bytes</strong> for TextFile and <strong>7,239,381 bytes</strong> for RCFile. The recorded single-run query wall time was <strong>35.28 s</strong> versus <strong>38.11 s</strong>. Timing includes starting Beeline and returning query output; it is a single-node benchmark.</p></details>
+      <details><summary>What did Hive show for TextFile versus RCFile?</summary><p>Both tables returned 10 yearly rows with matching year labels. Logical storage was <strong>8,494,848 bytes</strong> for TextFile and <strong>7,239,381 bytes</strong> for RCFile. In the latest rerun, the end-to-end time was <strong>47.351 s</strong> for TextFile and <strong>48.396 s</strong> for RCFile. Timing includes starting Beeline and returning query output; it is a single-node benchmark.</p></details>
     </div>
   </section>
 
@@ -68,7 +68,7 @@
       <h2>Hive storage and query comparison</h2>
       <p class="sub">Values from <code>results/hive/query_comparison.txt</code>.</p>
       <table><thead><tr><th>Measure</th><th class="num">TextFile</th><th class="num">RCFile</th></tr></thead><tbody>
-        <tr><td>Rows returned</td><td class="num">10</td><td class="num">10</td></tr><tr><td>Logical storage</td><td class="num">8.49 MB</td><td class="num">7.24 MB</td></tr><tr><td>Single-run query time</td><td class="num">35.28 s</td><td class="num">38.11 s</td></tr><tr><td>Year labels matched</td><td class="num">Yes</td><td class="num">Yes</td></tr>
+        <tr><td>Rows returned</td><td class="num">10</td><td class="num">10</td></tr><tr><td>Logical storage</td><td class="num">8.49 MB</td><td class="num">7.24 MB</td></tr><tr><td>Latest rerun end-to-end time</td><td class="num">47.351 s</td><td class="num">48.396 s</td></tr><tr><td>Year labels matched</td><td class="num">Yes</td><td class="num">Yes</td></tr>
       </tbody></table>
       <div class="note">RCFile used about 14.8% less logical storage in this run. Query timing is not a multi-node performance claim.</div>
     </article>
